@@ -1,3 +1,10 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+}
+
 /* Apply basic styling to the body */
 body {
     font-family: Arial, sans-serif;
@@ -48,6 +55,10 @@ label {
     display: inline-block;
     text-align: right;
     width: 160px;
+}
+
+select {
+    width: fit-content;
 }
 
 h1 {
