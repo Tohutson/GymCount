@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Count Predictor</title>
+</head>
+<body>
+    <h1>Gym Attendance Predictor</h1>
+
+    <form method="POST">
+        <label for="weekday">Select Weekday:</label>
+        <select name="weekday" id="weekday" required>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+        </select><br><br>
+
+        <label for="min_time">Earliest start time (e.g., 9:25):</label>
+        <input type="text" id="min_time" name="min_time" required><br><br>
+
+        <label for="max_time">Latest end time (e.g., 13:42):</label>
+        <input type="text" id="max_time" name="max_time" required><br><br>
+
+        <label for="duration">Workout Duration (minutes):</label>
+        <input type="number" id="duration" name="duration" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if best_time %}
+        <h2>Best time to workout:</h2>
+        <p>The best time to go is: {{ best_time }}</p>
+        <p>The average gym attendance during this time is: {{ avg_count }}</p>
+    {% endif %}
+</body>
+</html>
