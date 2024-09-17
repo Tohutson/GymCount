@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gym Count Predictor</title>
-    <!-- Link to the external CSS file -->
+    <title>Gym Attendance Predictor</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Gym Attendance Predictor</h1>
-
-        <form method="POST">
-            <label for="weekday">Select Weekday:</label>
-            <select name="weekday" id="weekday" required>
+    <h1>Predict Gym Attendance</h1>
+    <form method="POST">
+        <div>
+            <label for="weekday">Select Day:</label>
+            <select name="weekday" id="weekday">
                 <option value="Monday">Monday</option>
                 <option value="Tuesday">Tuesday</option>
                 <option value="Wednesday">Wednesday</option>
@@ -21,30 +19,41 @@
                 <option value="Friday">Friday</option>
                 <option value="Saturday">Saturday</option>
                 <option value="Sunday">Sunday</option>
-            </select><br><br>
+            </select>
+        </div>
 
-            <label for="min_time">Earliest start time (e.g., 9:25):</label>
-            <input type="text" id="min_time" name="min_time" required><br><br>
+        <div>
+            <label for="min_hour">Earliest Start Time:</label>
+            <input type="number" name="min_hour" min="1" max="12" value="7" required> :
+            <input type="number" name="min_minute" min="0" max="59" value="0" required> 
+            <select name="min_period">
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+            </select>
+        </div>
 
-            <label for="max_time">Latest end time (e.g., 13:42):</label>
-            <input type="text" id="max_time" name="max_time" required><br><br>
+        <div>
+            <label for="max_hour">Latest End Time:</label>
+            <input type="number" name="max_hour" min="1" max="12" value="10" required> :
+            <input type="number" name="max_minute" min="0" max="59" value="0" required> 
+            <select name="max_period">
+                <option value="PM">PM</option>
+                <option value="AM">AM</option>
+            </select>
+        </div>
 
-            <!-- Grouping workout duration inputs on the same line -->
-            <label>Workout Duration:</label>
-            <div class="duration-group">
-                <input type="number" id="duration_hours" name="duration_hours" min="0" required> Hours
-                <input type="number" id="duration_minutes" name="duration_minutes" min="0" max="59" required> Minutes
-            </div>
-            <br><br>
+        <div>
+            <label for="duration_hours">Workout Duration:</label>
+            <input type="number" name="duration_hours" min="0" value="0" required> Hours
+            <input type="number" name="duration_minutes" min="0" max="59" value="45" required> Minutes
+        </div>
 
-            <input type="submit" value="Submit">
-        </form>
+        <input type="submit" value="Predict">
+    </form>
 
-        {% if best_time %}
-            <h2>Best time to workout:</h2>
-            <p>The best time to go is: {{ best_time }}</p>
-            <p>The average gym attendance during this time is: {{ avg_count }}</p>
-        {% endif %}
-    </div>
+    {% if best_time and avg_count %}
+    <h2>Best Time to Go: {{ best_time }}</h2>
+    <h3>Average Gym Count: {{ avg_count }}</h3>
+    {% endif %}
 </body>
 </html>
