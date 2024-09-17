@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>When should I go to the gym?</h1>
+    <h1>Gym Time Prediction</h1>
     <form method="POST">
         <div class="form">
             <div>
@@ -54,7 +54,7 @@
 
     {% if best_time and avg_count %}
     <h2>Best Time to Go: {{ best_time }}</h2>
-    <h3>Average Gym Count: {{ avg_count }}</h3>
+    <h3>Average Count: {{ avg_count }} People</h3>
     {% endif %}
 </body>
 </html>
