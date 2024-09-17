@@ -23,7 +23,11 @@ def index():
         day = days[request.form['weekday']]
         min_time = request.form['min_time']
         max_time = request.form['max_time']
-        duration = int(request.form['duration'])
+        duration_hours = int(request.form['duration_hours'])
+        duration_minutes = int(request.form['duration_minutes'])
+
+        # Convert the total duration to minutes
+        duration = (duration_hours * 60) + duration_minutes
 
         # Parse input times
         min_hour, min_minute = parse_time_input(min_time)
@@ -76,7 +80,7 @@ def index():
         best_interval = min(intervals.items(), key=lambda item: item[1][0])
 
         # Display results on the same page
-        return render_template('index.html', best_time=best_interval[1][1], avg_count=best_interval[1][0])
+        return render_template('index.html', best_time=best_interval[1][1], avg_count=round(best_interval[1][0],2))
 
     # GET request, show the form
     return render_template('index.html')
