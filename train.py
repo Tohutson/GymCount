@@ -5,7 +5,6 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
-import pickle
 import joblib
 
 gsheetid = "11wIv3Ab08hjKH8bPrTA49xcWhtW7dUQeLPFvQc7YhZg"
